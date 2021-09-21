@@ -7,6 +7,8 @@ import {
 } from 'react-router-dom'
 
 import store from 'App/store'
+import GlobalStyle from 'App/styles/Global'
+import ThemesProviderUi from './styles/ThemeProviderUi'
 import {
   getRoutes,
   RouterComponent
@@ -20,13 +22,16 @@ const App = () => {
       <Router>
         <Suspense fallback={<div />}>
           <Provider store={store}>
-            <Switch>
-              <RouterComponent routes={routes} />
-              <Redirect
-                from='*'
-                to='/'
-              />
-            </Switch>
+            <ThemesProviderUi>
+              <GlobalStyle />
+              <Switch>
+                <RouterComponent routes={routes} />
+                <Redirect
+                  from='*'
+                  to='/'
+                />
+              </Switch>
+            </ThemesProviderUi>
           </Provider>
         </Suspense>
       </Router>
